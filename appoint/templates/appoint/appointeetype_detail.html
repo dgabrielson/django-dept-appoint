@@ -1,0 +1,48 @@
+{% extends 'appoint/base.html' %}
+
+{# ########################################### #}
+
+{% block head_subtitle %}Appointee Type - {{ object }}{% endblock %}
+{% block title %}Appointee Type: {{ object }}{% endblock %}
+
+{# ########################################### #}
+        
+{% block appoint_content %}
+    Notificants for this type:
+    <ul>
+        {% for notificant in object.notificant_set.active %}
+            <li>
+                {{ notificant.person }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}            
+
+{# ########################################### #}
+
+{% block appoint_extra_content %}
+    {% if perms.appoint.change_appointeetype %}
+        <p>
+            <a href="{% url 'appoint-appointeetype-update' pk=object.pk %}">
+                Update this appointee type &rarr;
+            </a>
+        </p>
+    {% endif %}
+    
+    {% if perms.appoint.new_appointeetype %}
+        <p>
+            <a href="{% url 'appoint-appointeetype-create' %}">
+                Create a new appointee type &rarr;
+            </a>
+        </p>
+    {% endif %}
+    
+    <p>
+        <a href="{% url 'appoint-appointeetype-list'  %}">
+            &larr; Back to the appointee type list 
+        </a>
+    </p>
+
+{% endblock %}
+
+{# ########################################### #}

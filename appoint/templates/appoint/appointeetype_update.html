@@ -1,0 +1,22 @@
+{% extends 'appoint/appointeetype_form.html' %}
+
+{# ########################################### #}
+
+{% block head_subtitle %}Update Appointee Type - {{ object }}{% endblock %}
+{% block title %}Update Appointee Type: {{ object }}{% endblock %}
+
+{# ########################################### #}
+       
+{% block form_button %}Update{% endblock %}
+
+{# ########################################### #}
+
+{% block appoint_extra_content %}
+    <p>
+        <a href="{% url 'appoint-appointeetype-delete' pk=object.pk %}">
+            Delete this appointee type &rarr;
+        </a>
+    </p>
+{% endblock %}
+
+{# ########################################### #}

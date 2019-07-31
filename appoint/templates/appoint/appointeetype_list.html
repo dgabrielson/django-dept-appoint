@@ -1,0 +1,41 @@
+{% extends 'appoint/base.html' %}
+
+{# ########################################### #}
+
+{% block head_subtitle %}Appointee Types{% endblock %}
+{% block title %}Appointee Types{% endblock %}
+
+{# ########################################### #}
+        
+{% block appoint_content %}
+    <ul>
+        {% for object in object_list %}
+            <li>
+                <a href="{{ object.get_absolute_url }}">
+                    {{ object }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}            
+
+{# ########################################### #}
+
+{% block appoint_extra_content %}
+    {% url 'appoint-appointeetype-create' as create_url %}
+    {% if create_url and perms.appoint.new_appointeetype %}
+        <p>
+            <a href="{{ create_url }}">
+                Create a new appointee type &rarr;
+            </a>
+        </p>
+    {% endif %}
+    
+    <p>
+        <a href="{% url 'appoint-appointment-list' %}">
+            &larr; Back to the list of appointments
+        </a>
+    </p>
+{% endblock %}
+
+{# ########################################### #}

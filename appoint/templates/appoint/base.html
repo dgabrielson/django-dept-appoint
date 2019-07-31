@@ -1,0 +1,23 @@
+{% extends 'site_base.html' %}
+
+{% block page_title %}{{ block.super }}{% block head_subtitle %}Appointment Tracking{% endblock %}{% endblock %}
+
+{# ########################################### #}
+
+{% block page_content_header %}{% block title %}Appointment Tracking{% endblock %}{% endblock %}
+
+{% block page_content_body %}
+
+    {% block appoint_content %}
+        <p>
+            Appointment Tracking content.
+        </p>
+    {% endblock %}            
+    {% block appoint_extra_content %}{% endblock %}
+
+{% endblock %}
+
+{# ########################################### #}
+
+
+

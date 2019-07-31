@@ -1,0 +1,22 @@
+{% extends 'appoint/appointment_form.html' %}
+
+{# ########################################### #}
+
+{% block head_subtitle %}Update Appointment - {{ object }}{% endblock %}
+{% block title %}Update Appointment: {{ object }}{% endblock %}
+
+{# ########################################### #}
+       
+{% block form_button %}Update{% endblock %}
+
+{# ########################################### #}
+
+{% block appoint_extra_content %}
+    <p>
+        <a href="{% url 'appoint-appointment-delete' pk=object.pk %}">
+            Delete this appointment &rarr;
+        </a>
+    </p>
+{% endblock %}
+
+{# ########################################### #}

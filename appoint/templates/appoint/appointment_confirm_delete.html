@@ -1,0 +1,33 @@
+{% extends 'appoint/appointment_detail.html' %}
+
+{# ########################################### #}
+
+{% block head_subtitle %}Delete Appointment - {{ object }}{% endblock %}
+{% block title %}Delete Appointment: {{ object }}{% endblock %}
+
+{# ########################################### #}
+       
+{% block form_button %}Delete{% endblock %}
+
+{# ########################################### #}
+
+{% block appoint_content %}
+    <form enctype="multipart/form-data" action="" method="post" class="form">{% csrf_token %}
+        <p>
+            Are you <strong>sure</strong> you want to delete this appointment?
+            <input type="submit" value="Yes, Delete">
+        </p>
+    </form>
+{% endblock %}
+
+{# ########################################### #}
+
+{% block appoint_extra_content %}
+    <p>
+        <a href="{% url 'appoint-appointment-detail' pk=object.pk %}">
+            Cancel and go back &rarr;
+        </a>
+    </p>
+{% endblock %}
+
+{# ########################################### #}

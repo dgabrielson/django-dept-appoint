@@ -1,0 +1,68 @@
+{% extends 'appoint/base.html' %}
+{% load static %}
+
+{# ########################################### #}
+
+{% block head_subtitle %}Appointment list{% endblock %}
+{% block title %}Appointment list{% endblock %}
+
+{# ########################################### #}
+
+{% block html_head %}
+{{ block.super }}
+<style type="text/css">
+    li.current {
+        list-style-image: url('{% static "admin/img/icon-yes.gif" %}');
+    }
+    li.expired {
+        list-style-image: url('{% static "admin/img/icon-no.gif" %}');
+    }
+    li.pending {
+        list-style-image: url('{% static "admin/img/icon-unknown.gif" %}');
+    }
+</style>
+{% endblock %}
+
+
+{# ########################################### #}
+        
+{% block appoint_content %}
+    <ul>
+        {% for object in object_list %}
+            <li class="{% if object.is_current %}current{% elif object.is_expired %}expired{% else %}pending{% endif %}">
+                <a href="{{ object.get_absolute_url }}">
+                    {{ object }}
+                </a>
+                {% for type in object.get_types %}
+                    {% if forloop.first %}&mdash; {% endif %}
+                    {{ type }}{% if not forloop.last %},{% else %}.{% endif %}
+                {% endfor %}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}            
+
+{# ########################################### #}
+
+{% block appoint_extra_content %}
+    {% url 'appoint-appointment-create' as create_url %}
+    {% if create_url %} {# and perms.appoint.new_appointment #}
+        <p>
+            <a href="{{ create_url }}">
+                Create a new appointment &rarr;
+            </a>
+        </p>
+    {% endif %}
+    
+    {% url 'appoint-appointeetype-list' as link_url %}
+    {% if link_url and perms.appoint.change_appointeetype %}
+        <p>
+            <a href="{{ link_url }}">
+                List of appointee types &rarr;
+            </a>
+        </p>
+    {% endif %}
+
+{% endblock %}
+
+{# ########################################### #}

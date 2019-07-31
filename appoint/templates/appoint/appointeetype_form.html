@@ -1,0 +1,43 @@
+{% extends 'appoint/base.html' %}
+{% load static %}
+
+{# ########################################### #}
+
+{% block head_subtitle %}Appointee Type form{% endblock %}
+{% block title %}Appointee Type form{% endblock %}
+
+{# ########################################### #}
+
+{% block html_head %}
+{{ block.super }}
+{{ form.media }}
+<script type="text/javascript">window.__admin_media_prefix__ = "{% filter escapejs %}{% static "admin/" %}{% endfilter %}";</script>
+{% endblock %}
+
+{# ########################################### #}
+        
+{% block appoint_content %}
+    <form enctype="multipart/form-data" action="" method="post" class="form">{% csrf_token %}
+        <table class="table-form">
+            {% include 'includes/form.html' %}
+            <tr class="visual-break">
+                <th class="label">
+                    <label>Contacts for this type</label>
+                </td>
+            </tr>
+            {% include 'includes/formset.html' %}
+            <tr class="submit-row visual-break">
+                <td>
+                    <input type="submit" value="{% block form_button %}Save{% endblock %}">
+                </td>
+            </tr>
+        </table>
+    </form>
+{% endblock %}            
+
+{# ########################################### #}
+
+{% block appoint_extra_content %}
+{% endblock %}
+
+{# ########################################### #}

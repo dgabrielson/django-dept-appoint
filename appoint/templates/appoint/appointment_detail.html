@@ -1,0 +1,67 @@
+{% extends 'appoint/base.html' %}
+
+{# ########################################### #}
+
+{% block head_subtitle %}Appointment - {{ object }}{% endblock %}
+{% block title %}Appointment for {{ object }}{% endblock %}
+
+{# ########################################### #}
+        
+{% block appoint_content %}
+    <dl>
+        {% for type in object.get_types %}
+            <dt>
+                {{ type }}
+            </dt>
+        {% endfor %}
+        
+        <dt>
+            Start date
+        </dt>
+        <dd>
+            {{ object.start_date }}
+        </dd>
+        
+        <dt>
+            End date
+        </dt>
+        <dd>
+            {{ object.end_date }}
+        </dd>
+        <td>
+            Status
+        </td>
+        <dd>
+            {% if object.is_current %}
+                current
+            {% elif object.is_expired %}
+                expired
+            {% else %}
+                pending
+            {% endif %}
+        </dd>
+    </dl>
+{% endblock %}            
+
+{# ########################################### #}
+
+{% block appoint_extra_content %}
+    <p>
+        <a href="{% url 'appoint-appointment-update' pk=object.pk %}">
+            Update this appointment &rarr;
+        </a>
+    </p>
+    <p>
+        <a href="{% url 'appoint-appointment-create' %}">
+            Create a new appointment &rarr;
+        </a>
+    </p>
+    <p>
+        <a href="{% url 'appoint-appointment-list'  %}">
+            &larr; Back to the appointment list 
+        </a>
+    </p>
+
+{% endblock %}
+
+{# ########################################### #}

@@ -1,0 +1,13 @@
+{# subject: #}{% if expires_today %}Appointment expires today{% else %}Upcoming appointment ending{% endif %}
+
+{# body #}
+Hi {{ notificant.given_name }},
+
+The appointment for {{ appointment.person }} as a {{ type }} {% if expires_today %}expires today{% else %}will expire in {{ date|timeuntil }}{% endif %}.
+
+{% if appointment.message %}{{ appointment.message }}
+
+{% endif %}Please take appropriate action to {% if not expires_today %}either renew or {% endif %}terminate this appointment appropriately.
+
+
+
